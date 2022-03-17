@@ -27,7 +27,7 @@ metadata:
   name: nginx
 spec:
   ports:
-  - name: 80-80
+  - name: http-80
     port: 80
     protocol: TCP
     targetPort: 80
@@ -46,7 +46,7 @@ spec:
   - route:
     - destination:
         host: nginx
-        subset: nginx
+        subset: v1
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule

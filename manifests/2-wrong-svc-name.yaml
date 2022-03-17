@@ -11,6 +11,7 @@ spec:
   template:
     metadata:
       labels:
+        version: v1
         app: nginx
     spec:
       containers:
@@ -27,7 +28,7 @@ metadata:
   name: nginx
 spec:
   ports:
-  - name: 80-80
+  - name: http-80
     port: 80
     protocol: TCP
     targetPort: 80
@@ -45,15 +46,15 @@ spec:
   http:
   - route:
     - destination:
-        host: nginx
-        subset: nginx
+        host: nginx.defaut
+        subset: v1
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: nginx
 spec:
-  host: nginx
+  host: nginx.defaut
   subsets:
   - name: v1
     labels:
